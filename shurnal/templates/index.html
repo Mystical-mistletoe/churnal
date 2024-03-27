@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Журнал работ</h1>
+{% for item in jobs%}
+<div class="col-md6 border rounded">
+    <h2>{{item.id}}</h2>
+    <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Название работы</th>
+      <th scope="col">Фамилия и имя</th>
+      <th scope="col">Продолжительность</th>
+      <th scope="col">Участники</th>
+      <th scope="col">Завершена?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td> {{item.job}}</td>
+      <td> {{item.team_lead.name}}  {{item.team_lead.surname}}</td>
+      <td> {{item.work_size}}</td>
+      <td> {{item.collaborators}}</td>
+        {% if item.is_private %}
+      <td>завершена</td>
+        {% else %}
+      <td>не завершена</td>
+        {% endif %}
+    </tr>
+  </tbody>
+</table>
+</div>
+
+{% endfor %}
+{% endblock %}
